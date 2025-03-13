@@ -55,6 +55,12 @@ Ensure you have **Python 3.x** installed along with the necessary libraries.
 2. Click the **Predict** button.
 3. The estimated salary is displayed on the screen.
 
+## Live Deployment
+
+You can access the deployed application here:  
+👉 [Salary Prediction App](https://salary-prediction-deployment.onrender.com)
+
+
 ## Dependencies
 - `numpy`
 - `pandas`
