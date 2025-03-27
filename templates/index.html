@@ -1,35 +1,99 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>ML API</title>
+  <title>Salary Prediction</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      font-family: 'Arimo', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    input, select, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
 </head>
-
 <body>
- <div class="login">
-	<h1>Predict Salary Analysis</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="experience" placeholder="Experience" required="required" />
-        <input type="text" name="test_score" placeholder="Test Score" required="required" />
-		<input type="text" name="interview_score" placeholder="Interview Score" required="required" />
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+  <div class="container">
+    <h1>Salary Prediction</h1>
+    <p>Enter details to predict salary in USD.</p>
+    <form action="{{ url_for('predict') }}" method="post">
+      <select name="work_year" required>
+        <option value="">Select Work Year</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+      <select name="experience_level" required>
+        <option value="">Select Experience Level</option>
+        <option value="EN">Entry Level</option>
+        <option value="MI">Mid Level</option>
+        <option value="SE">Senior Level</option>
+        <option value="EX">Executive</option>
+      </select>
+      <select name="employment_type" required>
+        <option value="">Select Employment Type</option>
+        <option value="FT">Full-time</option>
+        <option value="PT">Part-time</option>
+        <option value="CT">Contract</option>
+        <option value="FL">Freelance</option>
+      </select>
+      <input type="text" name="job_title" placeholder="Job Title" required />
+      <input type="text" name="employee_residence" placeholder="Employee Residence (e.g., US, IN)" required />
+      <input type="text" name="remote_ratio" placeholder="Remote Ratio (0, 50, 100)" required />
+      <input type="text" name="company_location" placeholder="Company Location (e.g., US, IN)" required />
+      <select name="company_size" required>
+        <option value="">Select Company Size</option>
+        <option value="S">Small</option>
+        <option value="M">Medium</option>
+        <option value="L">Large</option>
+      </select>
+      <button type="submit" class="btn">Predict</button>
     </form>
+    <br>
+    <h2>{{ prediction_text }}</h2>
+  </div>
+  <img src="static\logo_vj.png" alt="VJ Logo" style="position: absolute; top: 10px; right: 10px; height: 100px; width: auto;">
 
-   <br>
-   <br>
-   {{ prediction_text }}
-
- </div>
-
-
+  <div class="footer">
+    <p>Created by Vinod Jha</p>
+    <p>Connect with me: 
+      <a href="[www.linkedin.com/in/vinod-jha]" target="_blank">LinkedIn</a> | 
+      <a href="[https://github.com/Vinodjha]" target="_blank">GitHub</a>
+    </p>
+    <p>Project Repository: <a href="[https://github.com/Vinodjha/salary-prediction-deployment]" target="_blank">Click Here</a></p>
+    <p><strong>Looking for collaborators!</strong> If you're interested in working together on AI based projects, feel free to reach out.</p>
+  </div>
 </body>
 </html>
